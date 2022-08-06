@@ -1,5 +1,6 @@
 # Iniciando o projeto
 ## Criando e ativando o ambiente virtual
+sudo apt-get install python3-venv
 sudo python3 -m venv ./venv
 source venv/bin/activate
 ## Instalando o Django e conferindo
@@ -125,8 +126,11 @@ TypeError: function missing required argument 'year' (pos 1)
 django.db.migrations.exceptions.NodeNotFoundError: Migration appCatena.0002_procedimento_promotor_tipooperacao dependencies reference nonexistent parent node ('appCatena', '0001_initial')
 ## fui na pasta migratioon e apaguei as migrations. Ai passou a daroutro pau
 ## Entao entrei em __pycache__ dentro de migratios e matei os arquivos de cache
+## testando admim http://localhost:8000/admin
 
+python manage.py createsuperuser
 
-
-
-
+## Problemas com migratios
+1) apaguei todas as tabelas do banco
+2) apaguei arquivos dentro de migratios e __pycache__
+3) rodei de novo migrations e migrate
