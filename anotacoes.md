@@ -1,5 +1,6 @@
 # Iniciando o projeto
 ## Criando e ativando o ambiente virtual
+sudo apt install libpq-dev python3-dev
 sudo apt-get install python3-venv
 
 sudo python3 -m venv ./venv
