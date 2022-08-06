@@ -7,6 +7,7 @@ sudo python3 -m venv ./venv
 source venv/bin/activate
 ## Instalando o Django e conferindo
 sudo pip install django
+
 pip freeze
 ## Criando o Projeto
 sudo django-admin startproject setup .
