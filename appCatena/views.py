@@ -1,8 +1,13 @@
-from django.http import JsonResponse
-import datetime
+from rest_framework import viewsets
+from appCatena.models import TipoOperacao,TipoProcesso
+from appCatena.serializer import TipoOperacaoSerializer, TipoProcessoSerializer
 
-def tiposProcesso(request):
-    current_datetime = datetime.datetime.now()  
-    if request.method=="GET":
-        tipoProcesso={'tpPro_id':1,'tpPro_descri':'IPM','tpPro_dh':current_datetime}
-        return JsonResponse(tipoProcesso)
+class TiposOperacaoViewSet(viewsets.ModelViewSet):
+    """ Exibir todos os tipos de operações """
+    queryset = TipoOperacao.objects.all()
+    serializer_class = TipoOperacaoSerializer
+
+class TiposProcessoViewSet(viewsets.ModelViewSet):
+    """Exibe todos os tipos de operações"""
+    queryset = TipoProcesso.objects.all()
+    serializer_class = TipoProcessoSerializer

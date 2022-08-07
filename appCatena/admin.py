@@ -2,7 +2,7 @@ from django.contrib import admin
 from appCatena.models import TipoProcesso, TipoOperacao, Promotor, Procedimento
 
 class TpProcesso(admin.ModelAdmin):
-    #campos que serão mostrado
+    #campos que serão mostrado  
     list_display =('id','descri')
     #campos que serao usado para selecionar para altererar 
     list_display_list =('id','descri')
