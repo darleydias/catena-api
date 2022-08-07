@@ -59,7 +59,17 @@ pip install mysqlclient
 
 ## instalar mariadb  e workbanch
 
+sudo apt-get install -y libmariadb-dev
+
+pip3 install mariadb
+
+apt-get install libmariadbclient-dev
+
+sudo apt-get install libmariadbclient-dev
+
 sudo snap install mysql-workbench-community
+
+sudo snap connect mysql-workbench-community:password-manager-service :password-manager-service
 
 ## tenho que criar o banco catena, user : catena, pass:Catelecom()123
 

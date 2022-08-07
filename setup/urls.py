@@ -5,7 +5,8 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('tiposOperacao',TiposOperacaoViewSet,basename='TiposOperacao')
-router.register('tiposProcesso',TiposProcessoViewSet,basename='TiposProcesso')
+router.register('tiposProcesso',TiposProcessoViewSet,basename='TiposProcedimento')
+router.register('procedimentos',TiposProcessoViewSet,basename='Procedimento')
 
 urlpatterns = [
     path("admin/", admin.site.urls),
