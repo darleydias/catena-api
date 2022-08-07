@@ -211,6 +211,6 @@ sudo git add .
 
 sudo git commit -m "vx.x"
 
-sudo git push
+git push --set-upstream origin main
 
 
