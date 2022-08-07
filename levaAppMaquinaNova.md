@@ -1,11 +1,11 @@
- INSTALANDO O AMBIENTE NUMA MÁQUINA UBUNTU 22.04
+# INSTALANDO O AMBIENTE NUMA MÁQUINA UBUNTU 22.04
 
 ## SISTEMA OPERACIONAL INSTALADO COM CHROME, VSCODE, MYQLWORKBANCH, POSTMAN
 
 ## PIPELINE
 
 ORDEM | AÇÃO
--------------
+------|--------------------------------------------
 01    | Instalando SO
 02    | Criando e ativando o ambiente virtual
 03    | Instalando o Django e conferindo

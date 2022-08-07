@@ -18,10 +18,10 @@ class Procedimento(models.Model):
     tipo = models.IntegerField()
     descri = models.CharField(max_length = 240)
     nrPro = models.CharField(max_length = 150)
-    comarca = models.CharField(max_length = 150)
+    idComarca = models.CharField(max_length = 150)
     idPromotor = models.IntegerField()
     def __str__(self):
-        return self.proced
+        return self.descri
 
 class Promotor(models.Model):
     SEXO = (
@@ -42,8 +42,7 @@ class Comarca(models.Model):
     )
     nome = models.CharField(max_length = 240)
     sigla = models.CharField(max_length = 20)
-    idComarca = models.IntegerField()
-    sexo = models.CharField(max_length = 1,choices=TIPO,default = 'N',blank = False, null=False)
+    tipo = models.CharField(max_length = 1,choices=TIPO,default = 'N',blank = False, null=False)
     def __str__(self):
         return self.nome
 
