@@ -63,27 +63,37 @@ sudo snap install mysql-workbench-community
 
 ## tenho que criar o banco catena, user : catena, pass:Catelecom()123
 
+## rodar os comandos 
+
+python manage.py migrations
+
+python manage.py migrate
+
+## Caso o projeto não estaeja sendo clonado, comecando vazio:
+
+### Criando o projeto 
+
 sudo django-admin startproject setup .
 
-## Criando o app
+### Criando o app
 
 sudo django-admin startapp appCatena
 
-## Subindo projeto
+### Subindo projeto
 
 sudo python manage.py runserver
 
-## preciso mudar a lógica de retornar html para REST json
+### preciso mudar a lógica de retornar html para REST json
 
-### Dentro do arquivo view do app troco o render por JsonResponse
+#### Dentro do arquivo view do app troco o render por JsonResponse
 
 from appCatena.views import tiposProcesso
 
 from django.http import JsonResponse
 
-### Pra definir o que será entregue pela API, no view do app fica:
+#### Pra definir o que será entregue pela API, no view do app fica:
 
-### A view que antes renderizava um HTML, agora renderiza um JSON e remete para qum chamou a API   
+#### A view que antes renderizava um HTML, agora renderiza um JSON e remete para qum chamou a API   
 ~~~ python
 from django.http import JsonResponse
 
@@ -117,11 +127,11 @@ urlpatterns = [
     path("tiposProcesso/", tiposProcesso)
 ]
 ~~~
-## rodei:
+### rodei:
 
 pip install mysqlclient
 
-## no Ubuntu deu pau, ai fiz:
+### no Ubuntu deu pau, ai fiz:
 
 sudo apt-get update -y
 
@@ -131,7 +141,7 @@ pip3 install mariadb
 
 apt-get install libmysqlclient-dev
 
-## ------------------------
+### ------------------------
 
 pip install mysqlclient
 
@@ -140,13 +150,13 @@ sudo python manage.py makemigrations
 sudo python manage.py migrate
 
 
-## A conta do banco é user Yhvh()77
+### A conta de root do banco é user Yhvh()77
 
-## de root ubunto          yhvh()77
+### de root ubuntu yhvh()77
 
-## Mas não criava as migratios
+### Mas não criava as migratios
 
-## Estava faltando configurar o app dentro do arquivo setings
+### Estava faltando configurar o app dentro do arquivo setings
 ~~~ python
 INSTALLED_APPS = [
 
@@ -154,14 +164,14 @@ INSTALLED_APPS = [
 
     "django.contrib.admin",
 ~~~
-## Instalando o workbanch no Ubuntu
+### Instalando o workbanch no Ubuntu
 
 sudo snap install mysql-workbench-community
 sudo snap connect mysql-workbench-community:password-manager-service :password-manager-service
 
 
-## Para cadastrar so verbos HTTP e suas rotas tem uma ferramenta
-### django rest framework - Documentação: https://www.django-rest-framework.org/ 
+### Para cadastrar so verbos HTTP e suas rotas tem uma ferramenta
+#### django rest framework - Documentação: https://www.django-rest-framework.org/ 
 
 pip install djangorestframework
 
@@ -169,7 +179,7 @@ pip install markdown       # Markdown support for the browsable API.
 
 pip install django-filter  # Filtering support
 
-### Necessário registrar o App no settings.py, seçao INSTALED_APPS
+#### Necessário registrar o App no settings.py, seçao INSTALED_APPS
 ~~~ python
 INSTALLED_APPS = [
 
@@ -179,9 +189,9 @@ INSTALLED_APPS = [
 
 ]
 ~~~
-### No models.py registro todas entidades
-#### Crio a classe dentro o método __str__ para referenciar o model
-#### em entidades ue tenho relaóes de um pra ele com poucos "N`s" faco:
+#### No models.py registro todas entidades
+##### Crio a classe dentro o método __str__ para referenciar o model
+##### em entidades ue tenho relaóes de um pra ele com poucos "N`s" faco:
  ~~~ python  
  SEXO = (
         ('M','Masculino'),
@@ -191,21 +201,21 @@ INSTALLED_APPS = [
     )
 sexo = models.CharField(max_length = 1,choices=SEXO,default = 'M',blank = False, null=False)
 ~~~
-## Vamos agora gravar no banco
+### Vamos agora gravar no banco
 
 python manage.py makemigrations
 
 python manage.py migrate
 
-## o meu python makemigrations estava sempre dizendo que não havia mudanças
-### tinha esquecido do atributo das novas classes criadas no arquivo model:
+### o meu python makemigrations estava sempre dizendo que não havia mudanças
+#### tinha esquecido do atributo das novas classes criadas no arquivo model:
 
 class promotor(models.Model):
-### estava:
+#### estava:
 class promotor(): 
 
-## Configurando o admim para cadastrar essas entidades
-### Basta configurar o arquivo admin.py no app
+### Configurando o admim para cadastrar essas entidades
+#### Basta configurar o arquivo admin.py no app
 ~~~ python
 class TpProcesso(admin.ModelAdmin):
 
@@ -229,19 +239,21 @@ class TpProcesso(admin.ModelAdmin):
 ~~~
 admin.site.register(TipoProcesso,TpProcesso)
 
-## Apanhei pois dava a informação:
+### Apanhei pois dava a informação:
 admin.site.register(TipoProcesso,TpProcesso)
 
 NameError: name 'TpProcesso' is not defined
-## Era que a última linha tinha uma indentação
+### Era que a última linha tinha uma indentação
     list_page = 20
 
     admin.site.register(TipoProcesso,TpProcesso)
-## Qundo deveria ser
+### Qundo deveria ser
     list_page = 20
 
 admin.site.register(TipoProcesso,TpProcesso)
-## Estava dando um pau qund tentava gerara migratiosn
+
+### Estava dando um pau qundo tentava gerara migratiosn
+
 Was the model appCatena.tiposProcesso renamed to TipoProcesso? [y/N] y
 
 It is impossible to add a non-nullable field 'descri' to procedimento 
@@ -265,15 +277,15 @@ The datetime and django.utils.timezone modules are available, so it is
 
 Type 'exit' to exit this prompt
 
-## Ai quando ele "pediu Please enter the default value as valid Python", digitei
+### Ai quando ele "pediu Please enter the default value as valid Python", digitei
 
 datetime.date()
 
-## Passou a dar outro pau
+### Passou a dar outro pau
 
 TypeError: function missing required argument 'year' (pos 1)
 
-## gerei as migratios de novo ai passou a dar:
+### gerei as migratios de novo ai passou a dar:
 
 django.db.migrations.exceptions.NodeNotFoundError: Migration appCatena.
 
@@ -281,15 +293,15 @@ django.db.migrations.exceptions.NodeNotFoundError: Migration appCatena.
 
 nonexistent parent node ('appCatena', '0001_initial')
 
-## fui na pasta migratioon e apaguei as migrations. Ai passou a daroutro pau
+### fui na pasta migratioon e apaguei as migrations. Ai passou a daroutro pau
 
-## Entao entrei em __pycache__ dentro de migratios e matei os arquivos de cache
+### Entao entrei em __pycache__ dentro de migratios e matei os arquivos de cache
 
-## testando admim http://localhost:8000/admin
+### testando admim http://localhost:8000/admin
 
 python manage.py createsuperuser
 
-## Problemas com migratios
+### Problemas com migratios
 
 1) apaguei todas as tabelas do banco
 
@@ -297,9 +309,9 @@ python manage.py createsuperuser
 
 3) rodei de novo migrations e migrate
 
-## serializer faz o mapeamento pytthon json
+### serializer faz o mapeamento pytthon json
 
-## Erro - estava dando direto o erro
+### Erro - estava dando direto o erro
 
   File "/home/darley/catena/catena-api/setup/urls.py", line 3, in <module>
     from appCatena.views import TiposOperacaoViewSet,TiposProcessoViewSet
@@ -307,14 +319,14 @@ python manage.py createsuperuser
     from serializer import TipoOperacaoSerializer, TipoProcessoSerializer
 ModuleNotFoundError: No module named 'serializer'
 
-## na importação do arquivo de view estva faltando referencia oa pacote
+### na importação do arquivo de view estva faltando referencia oa pacote
 
 ~~~ python
 from rest_framework import viewsets
 from appCatena.models import TipoOperacao,TipoProcesso
 from serializer import TipoOperacaoSerializer, TipoProcessoSerializer
 ~~~
-## quando o certo seria
+### quando o certo seria
 
 ~~~ python
 from rest_framework import viewsets
@@ -322,11 +334,39 @@ from appCatena.models import TipoOperacao,TipoProcesso
 from appCatena.serializer import TipoOperacaoSerializer, TipoProcessoSerializer
 ~~~
 
-## erro postrman 
+## erro postman 
 
 ### quando eu estava tentando gravar o tiposProcesso no postman dava errado:
 
 #### estava gravando: localhost:8000/tiposProcesso
 #### deveria ser: localhost:8000/tiposProcesso/
+
+## Salvando projeto no git 
+
+### configurando usuario (se necessãrio)
+
+sudo git config user.name "darleydias"
+
+### Configurando e-mail (se necessãrio)
+
+sudo git config user.email "darlley@gmail.com"
+
+### setando ambiente remoto
+
+sudo git remote add origin https://github.com/darleydias/catena-api.git
+
+### setando branch 
+
+sudo git branch -M main
+
+### enviando 
+
+sudo git add .
+
+sudo git commit -m "vx.x"
+
+sudo git push
+
+
 
 
