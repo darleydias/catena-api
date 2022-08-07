@@ -4,7 +4,7 @@ from appCatena.models import TipoProcesso, TipoOperacao
 class TipoProcessoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoProcesso
-        fields = ['descri','dtTime']
+        fields = ['id','descri','dtTime']
 
 class TipoOperacaoSerializer(serializers.ModelSerializer):
     class Meta:

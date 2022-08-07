@@ -10,6 +10,8 @@ Intellicense (pylance)
  
 ## Criando e ativando o ambiente virtual
 
+sudo su
+
 sudo apt install libpq-dev python3-dev
 
 sudo apt-get install python3-venv
@@ -24,7 +26,42 @@ sudo pip install django
 
 pip freeze
 
-## Criando o Projeto
+## Criando o git 
+
+apt install git
+
+git init
+
+sudo git remote -v
+
+### Se não estiver certo :
+
+git remote add origin https://github.com/darleydias/catena-api.git
+
+sudo git branch -M main
+
+git clone https://github.com/darleydias/catena-api.git
+
+
+
+## Criando o Projeto (se for do zero, se não for, ou seja montei uma maquina nova mas quero trazer o projeto já trabalhado)
+## ja que dei o git clone atras:
+
+## tenho que instalar uns pacotes:
+
+sudo apt-get install -y libmariadb-dev
+
+pip3 install mariadb
+
+apt-get install libmysqlclient-dev
+
+pip install mysqlclient
+
+## instalar mariadb  e workbanch
+
+sudo snap install mysql-workbench-community
+
+## tenho que criar o banco catena, user : catena, pass:Catelecom()123
 
 sudo django-admin startproject setup .
 
@@ -91,8 +128,6 @@ sudo apt-get update -y
 sudo apt-get install -y libmariadb-dev
 
 pip3 install mariadb
-
-apt-get install libmariadbclient-dev
 
 apt-get install libmysqlclient-dev
 
