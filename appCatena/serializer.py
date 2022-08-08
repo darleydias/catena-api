@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from appCatena.models import TipoProcedimento, Procedimento, TipoOperacao, Promotor, Comarca
+from appCatena.models import Operacao, TipoProcedimento, Procedimento, TipoOperacao, Promotor, Comarca,Alvo,ServidorMembro,PartRecon,Ponto
 
 class TipoProcedimentoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +25,28 @@ class ComarcaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comarca
         fields = '__all__'
+        
+class AlvoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alvo
+        fields = '__all__'
+
+class PontoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ponto
+        fields = '__all__'
+
+class ServidorMembroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServidorMembro
+        fields = '__all__'
+
+class PartReconSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PartRecon
+        fields = '__all__'
+class OperacaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Operacao
+        fields = '__all__'
+

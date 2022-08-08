@@ -1,6 +1,6 @@
 ## INSTALANDO O AMBIENTE NUMA MÁQUINA UBUNTU 22.04
 
-### SISTEMA OPERACIONAL INSTALADO COM CHROME, VSCODE, MYQLWORKBANCH, POSTMAN
+### SISTEMA OPERACIONAL INSTALADO COM CHROME, VSCODE, MYSQL WORKBANCH, POSTMAN
 
 ### PIPELINE
 
@@ -16,7 +16,7 @@ ORDEM | AÇÃO
 08    | Criando as Serializer 
 09    | USANDO ADMIN
 10    | Instalando o POSTMAN
-11    | Instlando o VSCODE
+11    | Instalando o VSCODE
 12    | Subindo o projeto
 13    | Salvando no github
 
@@ -24,9 +24,9 @@ ORDEM | AÇÃO
 
 1. INSTALANDO SO
 
-#### Conta de root ubunto yhvh()77
+#### Conta de root ubuntu yhvh()77
 
-#### criar conta catena senha Catelecom()123
+#### criar conta do usuário `catena` senha `Catelecom()123` 
 
 
 2. Criando e ativando o ambiente virtual
@@ -37,7 +37,7 @@ ORDEM | AÇÃO
 
 > sudo python3 -m venv ./venv
 
-source venv/bin/activate
+> source venv/bin/activate
 
 3. Instalando o Django e conferindo
 
@@ -45,7 +45,7 @@ source venv/bin/activate
 
 > pip freeze
 
-4. Instalando o Maria-DB e workbanch no Ubuntu
+4. Instalando o Maria-DB e workbench no Ubuntu
 
 > sudo apt install mariadb-server
 
@@ -138,7 +138,7 @@ Cuidado: nas urls do postman tem que ter `/` no final
 
 deveria ser: localhost:8000/tiposProcesso/
 
-Tentei fazer metodo put ou path sem definir um id na barra de endereço:
+* Tentei fazer metodo put ou path sem definir um id na barra de endereço:
 
 localhost:8000/tiposOperacao/
 
