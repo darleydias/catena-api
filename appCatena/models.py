@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from smart_selects.db_fields import GroupedForeignKey
 
 ######## Classes tipo ########
 
@@ -186,11 +187,11 @@ class Evidencia(models.Model):
 
 class Recon(models.Model):
     orientacaoRecon = models.TextField()
-    dtPrev = models.DateTimeField(default=datetime.now,blank=True) # Data prevista de RECON
-    dtReal = models.DateTimeField(default=datetime.now,blank=True) # Data que ocorreu o RECON
-    infoColetadasRecon = models.TextField()
-    ponto = models.ForeignKey(Ponto,on_delete=models.CASCADE)
-    alvo = models.ForeignKey(Alvo,on_delete=models.CASCADE)
+    dtPrev = models.DateTimeField(default=datetime.now,blank=True,verbose_name="Data Prevista") # Data prevista de RECON
+    dtReal = models.DateTimeField(default=datetime.now,blank=True,verbose_name="Data do Recon") # Data que ocorreu o RECON
+    infoColetadasRecon = models.TextField(verbose_name="Informação Coletada")
+    ponto = models.ForeignKey(Ponto,on_delete=models.CASCADE,verbose_name="Ponto")
+    alvo = models.ForeignKey(Alvo,on_delete=models.CASCADE,verbose_name="Alvo")
     def __str__(self):
         return self.ponto
 
@@ -200,7 +201,8 @@ class Recon(models.Model):
 class PontoOperacao(models.Model): #Vários pontos de uma operação
     orientacao = models.TextField()
     operacao = models.ForeignKey(Operacao,on_delete=models.CASCADE)
-    ponto = models.ForeignKey(Ponto,on_delete=models.CASCADE)
+    # ponto = models.ForeignKey(Ponto,on_delete=models.CASCADE)
+    ponto = GroupedForeignKey(Ponto,"operacao")
     def __str__(self):
         return self.ponto
 
@@ -219,8 +221,8 @@ class EquipeOperacao(models.Model): #Varias pessoa s em um Recon
     operacao = models.ForeignKey(Operacao,on_delete=models.CASCADE)
     funcionario = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
     def __str__(self):
-        return self.funcionario
-
+        return self.funcao
+        
 class MideaEvidencia(models.Model): #Varias pessoa s em um Recon
     midea = models.ForeignKey(Midea,on_delete=models.CASCADE)
     evidencia = models.ForeignKey(Evidencia,on_delete=models.CASCADE)

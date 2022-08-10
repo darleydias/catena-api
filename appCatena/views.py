@@ -1,6 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import viewsets,generics
 from appCatena.models import Comarca, EquipeOperacao, EquipeRecon, Evidencia, Extensao, Funcao, Funcionario, Midea, MideaEvidencia, MimeType, Orgao, PontoOperacao, Promotor, Recon, Setor, TipoEvidencia, TipoMidea, TipoOperacao,TipoProcedimento,Procedimento,Ponto,Alvo,Operacao
-from appCatena.serializer import AlvoSerializer, EquipeOperacaoSerializer, EquipeReconSerializer, EvidenciaSerializer, ExtensaoSerializer, FuncaoSerializer, FuncionarioSerializer, MideaEvidenciaOperacaoSerializer, MideaSerializer, MimeTypeSerializer, OperacaoSerializer, OrgaoSerializer, PontoSerializer, ReconSerializer, SetorSerializer, TipoEvidenciaSerializer, TipoMideaSerializer, TipoOperacaoSerializer, TipoProcedimentoSerializer, ProcedimentoSerializer, PromotorSerializer,ComarcaSerializer
+from appCatena.serializer import AlvoSerializer, EquipeOperacaoSerializer, EquipeReconSerializer, EvidenciaSerializer, ExtensaoSerializer, FuncaoSerializer, FuncionarioSerializer, MideaEvidenciaOperacaoSerializer, MideaSerializer, MimeTypeSerializer, OperacaoSerializer, OrgaoSerializer, PontoSerializer, PontosOperacaoSerializer, ReconSerializer, SetorSerializer, TipoEvidenciaSerializer, TipoMideaSerializer, TipoOperacaoSerializer, TipoProcedimentoSerializer, ProcedimentoSerializer, PromotorSerializer,ComarcaSerializer,ListaFuncionariosOperacaoSerializer
 
 class TiposProcedimentoViewSet(viewsets.ModelViewSet):
     """Exibe todos os tipos de procedimentos"""
@@ -101,7 +101,7 @@ class ReconsViewSet(viewsets.ModelViewSet):
 class PontosOperacaoViewSet(viewsets.ModelViewSet):
     """Exibe todos os procedimentos"""
     queryset = PontoOperacao.objects.all()
-    serializer_class = AlvoSerializer
+    serializer_class = PontosOperacaoSerializer
 
 class EquipesReconViewSet(viewsets.ModelViewSet):
     """Exibe todos os procedimentos"""
@@ -117,3 +117,12 @@ class MideasEvidenciaViewSet(viewsets.ModelViewSet):
     """Exibe todos os procedimentos"""
     queryset = MideaEvidencia.objects.all()
     serializer_class = MideaEvidenciaOperacaoSerializer
+
+
+####################   Listando as funções de um orgao  ##########################
+
+class ListaFuncionariosOperacao(generics.ListAPIView):
+    def get_queryset(self):
+        queryset = EquipeOperacao.objects.filter(operacao__id=self.kwargs['pk'])
+        return queryset
+    serializer_class = ListaFuncionariosOperacaoSerializer

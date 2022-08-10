@@ -116,5 +116,10 @@ class MideaEvidenciaOperacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = MideaEvidencia
         fields = '__all__'
-        
 
+class ListaFuncionariosOperacaoSerializer(serializers.ModelSerializer):   
+    funcionario_nome = serializers.ReadOnlyField(source='funcionario.nome')     
+    class Meta:
+        model = EquipeOperacao
+        fields = ['funcionario_nome']
+    

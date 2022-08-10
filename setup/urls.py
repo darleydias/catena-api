@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 # from appCatena.models import Funcao, Orgao
-from appCatena.views import EquipesOperacaoViewSet, EquipesReconViewSet, EvidenciaViewSet, ExtensoesViewSet, FuncoesViewSet, FuncionariosViewSet, MideasEvidenciaViewSet, MideasViewSet, MimeTypesViewSet, OperacoesViewSet, OrgaosViewSet, PontosOperacaoViewSet, ReconsViewSet, SetoresViewSet, TipoMideasViewSet, TiposEvidenciaViewSet, TiposOperacaoViewSet,TiposProcedimentoViewSet,ProcedimentosViewSet,PromotoresViewSet,ComarcasViewSet,AlvosViewSet,PontosViewSet
+from appCatena.views import EquipesOperacaoViewSet, EquipesReconViewSet, EvidenciaViewSet, ExtensoesViewSet, FuncoesViewSet, FuncionariosViewSet, ListaFuncionariosOperacao, MideasEvidenciaViewSet, MideasViewSet, MimeTypesViewSet, OperacoesViewSet, OrgaosViewSet, PontosOperacaoViewSet, ReconsViewSet, SetoresViewSet, TipoMideasViewSet, TiposEvidenciaViewSet, TiposOperacaoViewSet,TiposProcedimentoViewSet,ProcedimentosViewSet,PromotoresViewSet,ComarcasViewSet,AlvosViewSet,PontosViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -45,5 +45,6 @@ router.register('mideasEvidencia',MideasEvidenciaViewSet,basename='MideaEvidenci
 urlpatterns = [
     path('admin/clearcache/', include('clearcache.urls')),
     path("admin/", admin.site.urls),
-    path("", include(router.urls))
+    path("", include(router.urls)),
+    path("operacao/<int:pk>/EquipeOperacao/",ListaFuncionariosOperacao.as_view())
 ]
