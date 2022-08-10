@@ -50,22 +50,24 @@ class Comarca(models.Model):
         ('N','Normal'),
         ('E','Especial')
     )
-    nome = models.CharField(max_length = 240)
-    sigla = models.CharField(max_length = 20)
-    tipo = models.CharField(max_length = 1,choices=TIPO,default = 'N',blank = False, null=False)
+    nome = models.CharField(max_length = 240,verbose_name="Nome")
+    sigla = models.CharField(max_length = 20,verbose_name="Sigla")
+    tipo = models.CharField(max_length = 1,choices=TIPO,default = 'N',blank = False, null=False,verbose_name="Tipo")
+    class Meta:
+       ordering = ['nome']
     def __str__(self):
         return self.nome
 
 class Orgao(models.Model):
-    descri = models.CharField(max_length = 240) 
-    sigla = models.CharField(max_length = 20)
+    descri = models.CharField(max_length = 240,verbose_name="Descrição") 
+    sigla = models.CharField(max_length = 20,verbose_name="Sigla")
     dtTime = models.DateTimeField(default=datetime.now,blank=True)
     def __str__(self):
         return self.descri
 
 class Funcao(models.Model):
     orgao = models.ForeignKey(Orgao,on_delete=models.CASCADE)
-    descri = models.CharField(max_length = 240) 
+    descri = models.CharField(max_length = 240,verbose_name="Descrição") 
     dtTime = models.DateTimeField(default=datetime.now,blank=True)
     def __str__(self):
         return self.descri
@@ -88,7 +90,7 @@ class Funcionario(models.Model):
 
 class Setor(models.Model):
     orgao = models.ForeignKey(Orgao,on_delete=models.CASCADE)
-    descri = models.CharField(max_length = 240) 
+    descri = models.CharField(max_length = 240,verbose_name="Descrição") 
     dtTime = models.DateTimeField(default=datetime.now,blank=True)
     def __str__(self):
         return self.descri
@@ -117,19 +119,33 @@ class Alvo(models.Model):
     def __str__(self):
         return self.nome
 
+class Promotor(models.Model):
+    SEXO = (
+        ('M','Masculino'),
+        ('F','Feminino')
+    )
+    nome = models.CharField(max_length = 240)
+    mamp = models.CharField(max_length = 20)
+    comarca = models.ForeignKey(Comarca,on_delete=models.CASCADE)
+    sexo = models.CharField(max_length = 1,choices=SEXO,default = 'M',blank = False, null=False)
+    dtNasc = models.DateTimeField(default=datetime.now,blank=True)
+    def __str__(self):
+        return self.nome
+
+
 class Procedimento(models.Model):
     tipoProcedimento = models.ForeignKey(TipoProcedimento,on_delete=models.CASCADE)
     descri = models.CharField(max_length = 240)
     nrPro = models.CharField(max_length = 150)
     comarca = models.ForeignKey(Comarca,on_delete=models.CASCADE)
-    promotor = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
+    promotor = models.ForeignKey(Promotor,on_delete=models.CASCADE)
     def __str__(self):
         return self.descri
 
 class Operacao(models.Model):
     tipoOperacao = models.ForeignKey(TipoOperacao,on_delete=models.CASCADE)
     nome = models.CharField(max_length = 150)
-    funcionarioResp = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
+    funcionarioResp = models.ForeignKey(Promotor,on_delete=models.CASCADE)
     ratBos = models.CharField(max_length = 150)
     fase = models.CharField(max_length = 10)
     contato = models.CharField(max_length = 240) #canal de contato com os membros da operação
@@ -168,19 +184,6 @@ class Evidencia(models.Model):
     def __str__(self):
         return self.descri
 
-class Promotor(models.Model):
-    SEXO = (
-        ('M','Masculino'),
-        ('F','Feminino')
-    )
-    nome = models.CharField(max_length = 240)
-    mamp = models.CharField(max_length = 20)
-    comarca = models.ForeignKey(Comarca,on_delete=models.CASCADE)
-    sexo = models.CharField(max_length = 1,choices=SEXO,default = 'M',blank = False, null=False)
-    dtNasc = models.DateTimeField(default=datetime.now,blank=True)
-    def __str__(self):
-        return self.nome
-
 class Recon(models.Model):
     orientacaoRecon = models.TextField()
     dtPrev = models.DateTimeField(default=datetime.now,blank=True) # Data prevista de RECON
@@ -189,23 +192,23 @@ class Recon(models.Model):
     ponto = models.ForeignKey(Ponto,on_delete=models.CASCADE)
     alvo = models.ForeignKey(Alvo,on_delete=models.CASCADE)
     def __str__(self):
-        return self.id
+        return self.ponto
 
 
 ############# Classes relacionais N | N
 
-class PontosOperacao(models.Model): #Vários pontos de uma operação
+class PontoOperacao(models.Model): #Vários pontos de uma operação
     orientacao = models.TextField()
     operacao = models.ForeignKey(Operacao,on_delete=models.CASCADE)
     ponto = models.ForeignKey(Ponto,on_delete=models.CASCADE)
     def __str__(self):
-        return self.id
+        return self.ponto
 
 class EquipeRecon(models.Model): #Varias pessoa s em um Recon
     recon = models.ForeignKey(Recon,on_delete=models.CASCADE)
     funcionario = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
     def __str__(self):
-        return self.id
+        return self.recon
 
 class EquipeOperacao(models.Model): #Varias pessoa s em um Recon
     FUNCAO = (
@@ -216,10 +219,10 @@ class EquipeOperacao(models.Model): #Varias pessoa s em um Recon
     operacao = models.ForeignKey(Operacao,on_delete=models.CASCADE)
     funcionario = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
     def __str__(self):
-        return self.id
+        return self.funcionario
 
 class MideaEvidencia(models.Model): #Varias pessoa s em um Recon
     midea = models.ForeignKey(Midea,on_delete=models.CASCADE)
     evidencia = models.ForeignKey(Evidencia,on_delete=models.CASCADE)
     def __str__(self):
-        return self.id
+        return self.evidencia

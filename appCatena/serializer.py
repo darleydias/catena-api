@@ -1,15 +1,15 @@
 from rest_framework import serializers
-from appCatena.models import EquipeOperacao, EquipeRecon, Evidencia, Extensao, Funcao, Funcionario, Midea, MideaEvidencia, MimeType, Operacao, Orgao, PontosOperacao, Recon, Setor, TipoEvidencia, TipoMidea, TipoProcedimento, Procedimento, TipoOperacao, Promotor, Comarca,Alvo,ServidorMembro,PartRecon,Ponto
+from appCatena.models import EquipeOperacao, EquipeRecon, Evidencia, Extensao, Funcao, Funcionario, Midea, MideaEvidencia, MimeType, Operacao, Orgao, PontoOperacao, Recon, Setor, TipoEvidencia, TipoMidea, TipoProcedimento, Procedimento, TipoOperacao, Promotor, Comarca,Alvo,Ponto
 
 class TipoProcedimentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoProcedimento
-        fields = ['descri','dtTime']
+        fields = ['id','descri','dtTime']
 
 class TipoEvidenciaSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoEvidencia
-        fields = ['descri','dtTime']
+        fields = ['id','descri','dtTime']
 
 class TipoOperacaoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -99,7 +99,7 @@ class ReconSerializer(serializers.ModelSerializer):
 
 class PontosOperacaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PontosOperacao
+        model = PontoOperacao
         fields = '__all__'
 
 class EquipeReconSerializer(serializers.ModelSerializer):

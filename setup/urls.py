@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
-from appCatena.models import Funcao, Orgao
-from appCatena.views import EquipesOperacaoViewSet, EquipesReconViewSet, EvidenciaViewSet, ExtensoesViewSet, FuncionariosViewSet, MideasEvidenciaViewSet, MideasViewSet, MimeTypesViewSet, OperacoesViewSet, OrgaosViewSet, PontosOperacaoViewSet, ReconsViewSet, SetoresViewSet, TipoMideasViewSet, TiposEvidenciaViewSet, TiposOperacaoViewSet,TiposProcedimentoViewSet,ProcedimentosViewSet,PromotoresViewSet,ComarcasViewSet,ServidoresMembrosViewSet,AlvosViewSet,PartsReconViewSet,PontosViewSet
+# from appCatena.models import Funcao, Orgao
+from appCatena.views import EquipesOperacaoViewSet, EquipesReconViewSet, EvidenciaViewSet, ExtensoesViewSet, FuncoesViewSet, FuncionariosViewSet, MideasEvidenciaViewSet, MideasViewSet, MimeTypesViewSet, OperacoesViewSet, OrgaosViewSet, PontosOperacaoViewSet, ReconsViewSet, SetoresViewSet, TipoMideasViewSet, TiposEvidenciaViewSet, TiposOperacaoViewSet,TiposProcedimentoViewSet,ProcedimentosViewSet,PromotoresViewSet,ComarcasViewSet,AlvosViewSet,PontosViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -14,7 +14,7 @@ router.register('extensoes',ExtensoesViewSet,basename='Extensao')
 router.register('tiposMidea',TipoMideasViewSet,basename='TipoMidea')
 router.register('comarcas',ComarcasViewSet,basename='Comarca')
 router.register('Orgaos',OrgaosViewSet,basename='Orgao')
-router.register('funcoes',Funcao,basename='Funcao')
+router.register('funcoes',FuncoesViewSet,basename='Funcao')
 router.register('funcionarios',FuncionariosViewSet,basename='Funcionario')
 router.register('setores',SetoresViewSet,basename='Setor')
 router.register('mideas',MideasViewSet,basename='Midea')
@@ -25,7 +25,7 @@ router.register('pontos',PontosViewSet,basename='Ponto')
 router.register('evidencias',EvidenciaViewSet,basename='Evidencia')
 router.register('promotores',PromotoresViewSet,basename='Promotor')
 router.register('recons',ReconsViewSet,basename='Recon')
-router.register('pontosOperacao',PontosOperacaoViewSet,basename='PontosOperacao')
+router.register('pontosOperacao',PontosOperacaoViewSet,basename='PontoOperacao')
 router.register('equipesRecon',EquipesReconViewSet,basename='EquipeRecon') 
 router.register('equipesOperacao',EquipesOperacaoViewSet,basename='EquipeOperacao') 
 router.register('mideasEvidencia',MideasEvidenciaViewSet,basename='MideaEvidencia') 

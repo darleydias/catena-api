@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from appCatena.models import Comarca, EquipeOperacao, EquipeRecon, Evidencia, Extensao, Funcao, Funcionario, Midea, MideaEvidencia, MimeType, Orgao, PontosOperacao, Promotor, Recon, Setor, TipoEvidencia, TipoMidea, TipoOperacao,TipoProcedimento,Procedimento,Ponto,PartRecon,Alvo,ServidorMembro,Operacao
-from appCatena.serializer import AlvoSerializer, EquipeOperacaoSerializer, EquipeReconSerializer, EvidenciaSerializer, ExtensaoSerializer, FuncaoSerializer, FuncionarioSerializer, MideaEvidenciaOperacaoSerializer, MideaSerializer, MimeTypeSerializer, OperacaoSerializer, OrgaoSerializer, PontoSerializer, ReconSerializer, ServidorMembroSerializer, SetorSerializer, TipoEvidenciaSerializer, TipoMideaSerializer, TipoOperacaoSerializer, TipoProcedimentoSerializer, ProcedimentoSerializer, PromotorSerializer,ComarcaSerializer,PartReconSerializer
+from appCatena.models import Comarca, EquipeOperacao, EquipeRecon, Evidencia, Extensao, Funcao, Funcionario, Midea, MideaEvidencia, MimeType, Orgao, PontoOperacao, Promotor, Recon, Setor, TipoEvidencia, TipoMidea, TipoOperacao,TipoProcedimento,Procedimento,Ponto,Alvo,Operacao
+from appCatena.serializer import AlvoSerializer, EquipeOperacaoSerializer, EquipeReconSerializer, EvidenciaSerializer, ExtensaoSerializer, FuncaoSerializer, FuncionarioSerializer, MideaEvidenciaOperacaoSerializer, MideaSerializer, MimeTypeSerializer, OperacaoSerializer, OrgaoSerializer, PontoSerializer, ReconSerializer, SetorSerializer, TipoEvidenciaSerializer, TipoMideaSerializer, TipoOperacaoSerializer, TipoProcedimentoSerializer, ProcedimentoSerializer, PromotorSerializer,ComarcaSerializer
 
 class TiposProcedimentoViewSet(viewsets.ModelViewSet):
     """Exibe todos os tipos de procedimentos"""
@@ -100,7 +100,7 @@ class ReconsViewSet(viewsets.ModelViewSet):
 
 class PontosOperacaoViewSet(viewsets.ModelViewSet):
     """Exibe todos os procedimentos"""
-    queryset = PontosOperacao.objects.all()
+    queryset = PontoOperacao.objects.all()
     serializer_class = AlvoSerializer
 
 class EquipesReconViewSet(viewsets.ModelViewSet):
