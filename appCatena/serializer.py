@@ -1,14 +1,70 @@
 from rest_framework import serializers
-from appCatena.models import Operacao, TipoProcedimento, Procedimento, TipoOperacao, Promotor, Comarca,Alvo,ServidorMembro,PartRecon,Ponto
+from appCatena.models import EquipeOperacao, EquipeRecon, Evidencia, Extensao, Funcao, Funcionario, Midea, MideaEvidencia, MimeType, Operacao, Orgao, PontosOperacao, Recon, Setor, TipoEvidencia, TipoMidea, TipoProcedimento, Procedimento, TipoOperacao, Promotor, Comarca,Alvo,ServidorMembro,PartRecon,Ponto
 
 class TipoProcedimentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoProcedimento
-        fields = ['id','descri','dtTime']
+        fields = ['descri','dtTime']
+
+class TipoEvidenciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoEvidencia
+        fields = ['descri','dtTime']
 
 class TipoOperacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoOperacao
+        fields = '__all__'
+
+class MimeTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MimeType
+        fields = '__all__'
+
+
+class ExtensaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Extensao
+        fields = '__all__'
+
+
+class TipoMideaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoMidea
+        fields = '__all__'
+
+class ComarcaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comarca
+        fields = '__all__'
+
+class OrgaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Orgao
+        fields = '__all__'
+
+class FuncaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Funcao
+        fields = '__all__'
+
+class FuncionarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Funcionario
+        fields = '__all__'
+class SetorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Setor
+        fields = '__all__'
+
+class MideaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Midea
+        fields = '__all__'
+
+class AlvoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alvo
         fields = '__all__'
 
 class ProcedimentoSerializer(serializers.ModelSerializer):
@@ -16,19 +72,9 @@ class ProcedimentoSerializer(serializers.ModelSerializer):
         model = Procedimento
         fields = '__all__'
 
-class PromotorSerializer(serializers.ModelSerializer):
+class OperacaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Promotor
-        fields = '__all__'
-
-class ComarcaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comarca
-        fields = '__all__'
-        
-class AlvoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Alvo
+        model = Operacao
         fields = '__all__'
 
 class PontoSerializer(serializers.ModelSerializer):
@@ -36,17 +82,39 @@ class PontoSerializer(serializers.ModelSerializer):
         model = Ponto
         fields = '__all__'
 
-class ServidorMembroSerializer(serializers.ModelSerializer):
+class EvidenciaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ServidorMembro
+        model = Evidencia
         fields = '__all__'
 
-class PartReconSerializer(serializers.ModelSerializer):
+class PromotorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PartRecon
+        model = Promotor
         fields = '__all__'
-class OperacaoSerializer(serializers.ModelSerializer):
+
+class ReconSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Operacao
+        model = Recon
         fields = '__all__'
+
+class PontosOperacaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PontosOperacao
+        fields = '__all__'
+
+class EquipeReconSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EquipeRecon
+        fields = '__all__'
+
+class EquipeOperacaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EquipeOperacao
+        fields = '__all__'
+        
+class MideaEvidenciaOperacaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MideaEvidencia
+        fields = '__all__'
+        
 
